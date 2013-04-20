@@ -1,0 +1,87 @@
+<!doctype html>
+
+<html ng-app="myApp">
+<head>
+
+	<script type="text/javascript" src="../js/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="../js/angular/angular.js"></script>
+	<script type="text/javascript" src="../js/uidevtest-data.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="../CSS/bootstrap-responsive.css"/>
+	<link rel="stylesheet" type="text/css" href="../CSS/uidevtest.css"/>
+
+</head>
+<body>
+	<div class="visible-phone visible-tablet visible-desktop row-fluid" ng-controller="glb.App">
+		<div class="slideDiv" ng-show="listing">
+			<div id="wrapperList" ng-repeat=" item in uidevtest" ng-click="showStory(item)">
+				<div class="imageList">
+					<img src="{{item.lead_photo_image_thumb}}"> 
+				</div>
+				<div class="textSlide"> 
+					<a class="titleSlide" href="">{{item.title}}</a> 
+					<span class="category">Category/
+						<span ng-repeat="cat in item.categories_name" >{{cat}}
+							<span ng-show="!$last">, 
+							</span>
+						</span>
+					</span>
+					<span class="publishedSlide">Posted: {{item.pub_date | date: 'h:mm a EEEE, MMMM d, y'}}</span>
+					<span class="updatedSlide">Updated: {{item.updated | date: 'h:mm a EEEE, MMMM d, y'}}</span>		
+				</div>	
+			</div>
+		</div>
+		<div class="layout" ng-show="!listing">
+			<div id="wrapperStory" class="row-fluid">
+				<div class="barTop1"></div>	
+				<a class="breadcrumb"href="../html/index.html">HOME > NEWS</a>	
+				<div class="barTop2"></div>
+				<div class="topBox">
+					<div class="title">{{story.title}}</div>
+					<span class="updPub">Updated: {{story.updated | date: 'h:mm a EEEE, MMMM d, y'}}</span>
+					<span class="updPub">Posted: {{story.pub_date | date: 'h:mm a EEEE, MMMM d, y'}}</span>
+				</div>
+				<div class="topBox480">
+					<span class="updPub">Updated: {{story.updated | date: 'h:mm a EEEE, MMMM d, y'}}</span>
+					<span class="updPub">Posted: {{story.pub_date | date: 'h:mm a EEEE, MMMM d, y'}}</span>
+					<div class="title">{{story.title}}</div>
+					<div class="socialLinks480">
+						<img src="../images/comment.png">
+						<a href="">COMMENT</a>
+						<img src="../images/share.png">
+						<a href="">SHARE</a>
+						<img src="../images/favorite.png">
+						<a href="">FAVORITE</a>
+						<img src="../images/vote.png">
+						<a href="">VOTE</a>
+					</div>
+				</div>
+				<div class="imgRow">			
+					<div class="imgDiv">
+						<img src="{{story.lead_photo_image_url}}">
+						<span class="imgCredit">&nbsp;{{story.lead_photo_credit}}&nbsp;</span>
+					</div>
+					<span class="caption">{{story.lead_photo_caption }}</span>
+				</div>
+				<div class="wrapperLast">
+					<div class="socialLinks">
+						<img class="grayscale" src="../images/comment.png">
+						<a href="">COMMENT</a>
+						<img class="grayscale" src="../images/share.png">
+						<a href="">SHARE</a>
+						<img class="grayscale" src="../images/favorite.png">
+						<a href="">FAVORITE</a>
+						<img class="grayscale" src="../images/vote.png">
+						<a href="">VOTE</a>
+					</div>
+					<div class="storyBox">
+						<div class="author" ng-repeat="aut in story.author">By <a href="">{{aut}}</a></div>
+						<div id="columns" class="" ng-bind-html-unsafe="story.story"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
